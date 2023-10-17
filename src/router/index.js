@@ -16,6 +16,11 @@ const router = createRouter({
       component: () => import('../views/Baja.vue')
     },
     {
+      path: '/politica',
+      name: 'politica',
+      component: () => import('../views/Politica.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue')
