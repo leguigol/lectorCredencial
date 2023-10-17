@@ -12,8 +12,7 @@ export const useDatabaseStore=defineStore('database',{
             try{
                 const objetoDoc={
                     email: mail,
-                    id: nanoid(6),
-                    fecha: new Datetime()
+                    fecha: new Date().toISOString()
                 }
                 const docRef=await addDoc(collection(db, "bajas"), objetoDoc);
                 this.documents.push({

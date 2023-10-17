@@ -1,14 +1,29 @@
 <template>
-          <a-layout-header :style="{ height: '150px', margin: '0', padding: '0'}">
+        <a-layout-header :style="{ height: '150px', margin: '0', padding: '0'}">
           <img src="../assets/header.jpg" class="responsive-img">
         </a-layout-header>
 
         <a-row :style="{textAlign: 'center'}">
             <a-col :xs="{span: 24}" :sm="{span:24}">
-                <input type="text" id="mail" placeholder="ingrese email a dar de baja" class="form-control" v-model=mail required>              
+              <a-form
+                @submit.prevent="confirmDelete"
+                name="baja"
+                autocomplete="off"
+              >
+
+              <a-form-item
+                  name="email"
+                  label="Ingrese su email"
+                  :rules="[{required: true, message: 'Por favor ingrese su correo electronico'},
+                  {type: 'email', message: 'Por favor ingrese un correo valido', trigger: 'change'}]"
+                >
+                  <a-input v-model:value="email" @change="validateEmail"></a-input>
+                  </a-form-item>
                 <div>
-                    <button @click="confirmDelete" class="btn btn-danger mt-2">BAJA</button>
+                    <button :disabled="!isValidEmail" type="submit" class="btn btn-danger mt-2">BAJA</button>
                 </div>
+              
+              </a-form>  
             </a-col>    
 
         </a-row>
@@ -21,11 +36,12 @@
   import { useDatabaseStore } from '../stores/database';
   import Swal from 'sweetalert2';
 
-  const mail=ref(''); 
-  console.log(mail.value)
   const databaseStore=useDatabaseStore();
+  const email=ref('')
+  const isValidEmail = ref(false);
 
 const confirmDelete = () => {
+  console.log(email.value)
   Swal.fire({
     title: '¿Estás seguro?',
     text: 'Esta acción no se puede deshacer.',
@@ -41,10 +57,15 @@ const confirmDelete = () => {
 };
 
 const deleteElement = () => {
-    console.log('valor de mail: '+mail.value);
-    databaseStore.addMail(mail.value);
+    databaseStore.addMail(email.value);
     Swal.fire('¡Eliminado!', 'El elemento ha sido eliminado con éxito.', 'success');
 };
+
+const validateEmail = () => {
+  const emailRegex = /\S+@\S+\.\S+/;
+  isValidEmail.value = emailRegex.test(email.value);
+};
+
 </script>
 
 <style>
