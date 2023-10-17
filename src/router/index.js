@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
 import URLReader from '../components/URLReader.vue';
 
 const router = createRouter({
@@ -11,7 +11,7 @@ const router = createRouter({
       component: URLReader
     },
     {
-      path: '/baja/',
+      path: '/baja',
       name: 'baja',
       component: () => import('../views/Baja.vue')
     },
