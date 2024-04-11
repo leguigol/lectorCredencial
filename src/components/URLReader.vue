@@ -1,6 +1,6 @@
 <template>
         <a-layout-header :style="{ height: '150px', margin: '0', padding: '0'}">
-          <img src="../assets/header.jpg" class="responsive-img">
+          <img src="../assets/header_new.jpeg" class="responsive-img">
         </a-layout-header>
 
         <a-row :style="{textAlign: 'center'}">
