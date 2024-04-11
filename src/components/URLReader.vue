@@ -9,14 +9,15 @@
                     <div v-for="registro in registros" :key="registro.user">
                             <h2>{{ registro.apellido }} {{ registro.nombre }}</h2>
                             <h3>DNI: {{ registro.dni }}</h3>
-                            <h3>Forma de Suscripción: {{ registro.forma_suscripcion }}</h3>
+                            <h3>Forma de Suscripción: {{ registro.zona }}</h3>
+                            <h3>Whatsapp: {{ registro.whatsapp }}</h3>
                             <p>Fecha de Registro: {{ formatearFecha(registro.fecha_registro.toDate()) }}</p>
                     </div>
                 </div>
             </a-col>    
 
         </a-row>
-        <a-row v-if="registroStore.beneficios.length>0">
+        <!-- <a-row v-if="registroStore.beneficios.length>0">
             <a-col :xs="{span: 24}" :sm="{span:12, offset:6}">
                     <a-card :style="{textAlign: 'center'}">
                         <h2>BENEFICIOS</h2>
@@ -25,7 +26,7 @@
                         </div>
                     </a-card>
             </a-col>    
-        </a-row>
+        </a-row> -->
         
 
 </template>
